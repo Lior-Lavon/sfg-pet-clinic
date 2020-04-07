@@ -1,4 +1,9 @@
 package guru.springframework.petclinic.models;
 
-public class Vet {
+import javax.persistence.Entity;
+
+@Entity
+public class Vet extends Person {
+
+
 }
