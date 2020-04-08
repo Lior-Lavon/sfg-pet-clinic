@@ -1,4 +1,4 @@
-package guru.springframework.petclinic.models;
+package guru.springframework.petclinicdata.modules;
 
 import javax.persistence.Entity;
 
