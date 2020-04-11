@@ -1,10 +1,12 @@
 package guru.springframework.petclinicdata.services.map;
 
+import guru.springframework.petclinicdata.modules.BaseEntity;
+
 import java.util.*;
 
-public abstract class AbstractMapService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-    protected Map<ID, T> map = new HashMap();
+    protected Map<Long, T> map = new HashMap();
 
     Set<T> findAll(){
         return new HashSet<>(map.values());
@@ -14,9 +16,16 @@ public abstract class AbstractMapService<T, ID> {
         return map.get(id);
     }
 
-    T save(ID id, T object){
-        map.put(id, object);
+    T save(T object){
+        if(object !=null){
+            if(((BaseEntity)object).getId()==null){
+                ((BaseEntity)object).setId(getNextId());
+            }
 
+            map.put(getNextId(), object);
+        } else{
+            throw new RuntimeException("Object cannot be null.");
+        }
         return object;
     }
 
@@ -25,14 +34,24 @@ public abstract class AbstractMapService<T, ID> {
     }
 
     void delete(T object){
-        Iterator<Map.Entry<ID, T>> iterator = map.entrySet().iterator();
+        Iterator<Map.Entry<Long, T>> iterator = map.entrySet().iterator();
 
         while(iterator.hasNext()){
-            Map.Entry<ID, T> obj = iterator.next();
+            Map.Entry<Long, T> obj = iterator.next();
             if(object.equals(obj)){
                 iterator.remove();
             }
         }
+    }
+
+    private Long getNextId(){
+        Long nextId = null;
+        try{
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e){
+            nextId = 1L;
+        }
+        return nextId;
     }
 
 }
