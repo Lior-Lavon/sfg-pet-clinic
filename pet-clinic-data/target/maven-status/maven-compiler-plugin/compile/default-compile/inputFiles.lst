@@ -1,5 +1,14 @@
-/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Person.java
-/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/PetType.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/map/OwnerServiceMap.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/map/AbstractMapService.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/PetService.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/map/PersonServiceMap.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Vet.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Pet.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/OwnerService.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/CrudService.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/VetService.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Person.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/PetType.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/BaseEntity.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Owner.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/map/PetServiceMap.java
