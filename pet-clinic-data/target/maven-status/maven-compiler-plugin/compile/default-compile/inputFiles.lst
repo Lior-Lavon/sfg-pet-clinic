@@ -8,6 +8,7 @@
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/CrudService.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/VetService.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Person.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/services/map/VetServiceMap.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/PetType.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/BaseEntity.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-data/src/main/java/guru/springframework/petclinicdata/modules/Owner.java

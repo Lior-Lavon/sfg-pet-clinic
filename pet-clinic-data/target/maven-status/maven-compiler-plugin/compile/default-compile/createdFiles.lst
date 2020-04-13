@@ -1,0 +1,6 @@
+guru/springframework/petclinicdata/services/PetService.class
+guru/springframework/petclinicdata/services/OwnerService.class
+guru/springframework/petclinicdata/services/map/PetServiceMap.class
+guru/springframework/petclinicdata/services/map/VetServiceMap.class
+guru/springframework/petclinicdata/services/map/AbstractMapService.class
+guru/springframework/petclinicdata/services/map/PersonServiceMap.class
