@@ -1,6 +1,5 @@
 package guru.springframework.petdataweb.controllers;
 
-import guru.springframework.petclinicdata.modules.Owner;
 import guru.springframework.petclinicdata.modules.Vet;
 import guru.springframework.petclinicdata.services.VetService;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
-@RequestMapping("/vets")
+//@RequestMapping("/vets")
 @Controller
 public class VetController {
 
@@ -19,7 +18,8 @@ public class VetController {
         this.vetService = vetService;
     }
 
-    @RequestMapping({"", "/index", "/index.html"})
+//    @RequestMapping({"", "/", "/index", "/index.html", ".html"})
+    @RequestMapping({"/vets", "/vets/", "/vets.html", "/index", "/index.html", ".html"})
     public String showVets(Model model){
 
         Set<Vet> vets = vetService.findAll();
