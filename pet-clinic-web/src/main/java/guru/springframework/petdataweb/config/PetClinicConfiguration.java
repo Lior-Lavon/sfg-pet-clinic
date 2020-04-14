@@ -2,11 +2,9 @@ package guru.springframework.petdataweb.config;
 
 import guru.springframework.petclinicdata.services.OwnerService;
 import guru.springframework.petclinicdata.services.PetTypeService;
+import guru.springframework.petclinicdata.services.SpecialtyService;
 import guru.springframework.petclinicdata.services.VetService;
-import guru.springframework.petclinicdata.services.map.OwnerServiceMap;
-import guru.springframework.petclinicdata.services.map.PetServiceMap;
-import guru.springframework.petclinicdata.services.map.PetTypeServiceMap;
-import guru.springframework.petclinicdata.services.map.VetServiceMap;
+import guru.springframework.petclinicdata.services.map.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,13 +20,19 @@ public class PetClinicConfiguration {
 //    Init Bean Vet
     @Bean
     public VetService InitVetService(){
-        return new VetServiceMap();
+        return new VetServiceMap(InitSpecialtyService());
     }
 
 // Init Bean PetType
     @Bean
     public PetTypeService InitPetTypeService(){
         return new PetTypeServiceMap();
+    }
+
+// Init Bean Specialty
+    @Bean
+    public SpecialtyService InitSpecialtyService(){
+        return new SpecialtyServiceMap();
     }
 
 
