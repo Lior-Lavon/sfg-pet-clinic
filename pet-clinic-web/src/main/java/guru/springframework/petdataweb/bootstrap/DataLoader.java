@@ -1,9 +1,6 @@
 package guru.springframework.petdataweb.bootstrap;
 
-import guru.springframework.petclinicdata.modules.Owner;
-import guru.springframework.petclinicdata.modules.Pet;
-import guru.springframework.petclinicdata.modules.PetType;
-import guru.springframework.petclinicdata.modules.Vet;
+import guru.springframework.petclinicdata.modules.*;
 import guru.springframework.petclinicdata.services.OwnerService;
 import guru.springframework.petclinicdata.services.PetTypeService;
 import guru.springframework.petclinicdata.services.VetService;
@@ -79,11 +76,22 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+
+        Specialty specialty1 = new Specialty();
+        specialty1.setDescription("specialty1");
+
+        vet1.getSpecialties().add(specialty1);
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+
+        Specialty specialty2 = new Specialty();
+        specialty2.setDescription("specialty2");
+
+        vet2.getSpecialties().add(specialty2);
+
         vetService.save(vet2);
 
         System.out.println("Loaded Vets...");
