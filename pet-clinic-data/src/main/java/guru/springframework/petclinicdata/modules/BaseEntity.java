@@ -11,7 +11,7 @@ import java.util.Objects;
 public class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment filed 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment filed
     private Long id;
 
     public Long getId() {
