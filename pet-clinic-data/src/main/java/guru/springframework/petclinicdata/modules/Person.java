@@ -1,5 +1,8 @@
 package guru.springframework.petclinicdata.modules;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Person extends BaseEntity{
 
     private String firstName;
