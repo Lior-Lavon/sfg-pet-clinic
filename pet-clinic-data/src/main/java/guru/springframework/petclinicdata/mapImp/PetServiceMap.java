@@ -1,4 +1,4 @@
-package guru.springframework.petclinicdata.services.map;
+package guru.springframework.petclinicdata.mapImp;
 
 import guru.springframework.petclinicdata.modules.Pet;
 import guru.springframework.petclinicdata.services.PetService;
