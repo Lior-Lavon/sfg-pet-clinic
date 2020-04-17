@@ -1,6 +1,6 @@
-package guru.springframework.petclinicdata.jpaImp.springDataJPAImpl;
+package guru.springframework.petclinicdata.SDJpaImp.springDataJPAImpl;
 
-import guru.springframework.petclinicdata.jpaImp.repositories.OwnerRepository;
+import guru.springframework.petclinicdata.SDJpaImp.repositories.OwnerRepository;
 import guru.springframework.petclinicdata.modules.Owner;
 import guru.springframework.petclinicdata.services.OwnerService;
 import org.springframework.context.annotation.Profile;
