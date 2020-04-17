@@ -1,7 +1,10 @@
 package guru.springframework.petclinicdata.modules;
 
 import javax.persistence.*;
+import java.security.AllPermission;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -20,6 +23,9 @@ public class Pet extends BaseEntity{
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visits = new HashSet<>();
 
     public Pet() {
     }
@@ -61,5 +67,19 @@ public class Pet extends BaseEntity{
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void addVisit(Visit visit){
+        visit.setPet(this);
+        this.visits.add(visit);
+    }
+
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        visits.forEach(visit -> {visit.setPet(this);});
+        this.visits = visits;
     }
 }
