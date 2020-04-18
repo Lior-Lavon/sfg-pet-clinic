@@ -12,9 +12,9 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class PetJpaService extends PetService {
+public class PetJpaService implements PetService {
 
-    private PetRepository petRepository;
+    private final PetRepository petRepository;
 
     public PetJpaService(PetRepository petRepository) {
         this.petRepository = petRepository;
