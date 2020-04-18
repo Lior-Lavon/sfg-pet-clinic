@@ -8,33 +8,36 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 // Mark as component -> this class becomes a Bean and get registered to the Spring context
-// then becaose of the implementation, String is going to sun this Bean
+// then becuse of the implementation, String is going to sun this Bean
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final OwnerService ownerService;
-    private final VetService vetService;
-    private final PetTypeService petTypeService;
-    private final SpecialtyService specialtyService;
-    private final VisitService visitService;
-
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
-        this.ownerService = ownerService;
-        this.vetService = vetService;
-        this.petTypeService = petTypeService;
-        this.specialtyService = specialtyService;
-        this.visitService = visitService;
-    }
+//    private final OwnerService ownerService;
+//    private final VetService vetService;
+//    private final PetTypeService petTypeService;
+//    private final SpecialtyService specialtyService;
+//    private final VisitService visitService;
+//    private final PetService petService;
+//
+//    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService, PetService petService) {
+//        this.ownerService = ownerService;
+//        this.vetService = vetService;
+//        this.petTypeService = petTypeService;
+//        this.specialtyService = specialtyService;
+//        this.visitService = visitService;
+//        this.petService = petService;
+//    }
 
     @Override
     public void run(String... args) throws Exception {
 
-        int count = ownerService.findAll().size();
-        if(count==0)
-            loadData();
+//        int count = petTypeService.findAll().size();
+//        if(count==0)
+//            loadData();
     }
 
     private void loadData() {
+/*
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -71,6 +74,7 @@ public class DataLoader implements CommandLineRunner {
         mikesPet.setBirthDate(LocalDate.now());
         mikesPet.setName("Rosco");
         mikesPet.setOwner(owner1);
+        petService.save(mikesPet);
 
         owner1.getPets().add(mikesPet);
 
@@ -88,6 +92,7 @@ public class DataLoader implements CommandLineRunner {
         fionasPet.setBirthDate(LocalDate.now());
         fionasPet.setName("Just-Cat");
         fionasPet.setOwner(owner2);
+        petService.save(fionasPet);
 
         owner2.getPets().add(fionasPet);
 
@@ -117,5 +122,7 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets...");
+
+ */
     }
 }

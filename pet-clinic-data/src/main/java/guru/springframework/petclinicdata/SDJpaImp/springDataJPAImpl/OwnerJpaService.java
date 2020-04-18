@@ -3,6 +3,7 @@ package guru.springframework.petclinicdata.SDJpaImp.springDataJPAImpl;
 import guru.springframework.petclinicdata.SDJpaImp.repositories.OwnerRepository;
 import guru.springframework.petclinicdata.modules.Owner;
 import guru.springframework.petclinicdata.services.OwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @Profile("springdatajpa")
 public class OwnerJpaService implements OwnerService {
 
-    private final OwnerRepository ownerRepository;
+    private OwnerRepository ownerRepository;
 
     public OwnerJpaService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
@@ -37,11 +38,14 @@ public class OwnerJpaService implements OwnerService {
     public Owner findById(Long id) {
         Optional<Owner> optionalOwnser = ownerRepository.findById(id);
         return optionalOwnser.orElse(null);
-
     }
 
     @Override
     public Owner save(Owner object) {
+        System.out.println("#########");
+        System.out.println("#########");
+        System.out.println("#########");
+
         return ownerRepository.save(object);
     }
 

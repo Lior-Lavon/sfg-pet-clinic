@@ -4,12 +4,14 @@ import guru.springframework.petclinicdata.modules.Pet;
 import guru.springframework.petclinicdata.modules.Visit;
 import guru.springframework.petclinicdata.services.PetService;
 import guru.springframework.petclinicdata.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
@@ -31,9 +33,9 @@ public class VisitMapService extends AbstractMapService<Visit, Long> implements 
     public Visit save(Visit visit) {
 
         // Validation for Map implementation
-        if(visit.getPet()==null || visit.getPet().getOwner()==null ||
-                visit.getPet().getId()==null || visit.getPet().getOwner().getId()==null)
-            throw new RuntimeException("Invalid visit");
+//        if(visit.getPet()==null || visit.getPet().getOwner()==null ||
+//                visit.getPet().getId()==null || visit.getPet().getOwner().getId()==null)
+//            throw new RuntimeException("Invalid visit");
         return super.save(visit);
     }
 
