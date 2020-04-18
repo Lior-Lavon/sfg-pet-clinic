@@ -14,25 +14,25 @@ public class PetClinicConfiguration {
     //    Init Bean Owner
     @Bean
     public OwnerService InitOwnerService(){
-        return new OwnerServiceMap(InitPetTypeService(), new PetServiceMap());
+        return new OwnerMapService(InitPetTypeService(), new PetMapService());
     }
 
 //    Init Bean Vet
     @Bean
     public VetService InitVetService(){
-        return new VetServiceMap(InitSpecialtyService());
+        return new VetMapService(InitSpecialtyService());
     }
 
 // Init Bean PetType
     @Bean
     public PetTypeService InitPetTypeService(){
-        return new PetTypeServiceMap();
+        return new PetTypeMapService();
     }
 
 // Init Bean Specialty
     @Bean
     public SpecialtyService InitSpecialtyService(){
-        return new SpecialtyServiceMap();
+        return new SpecialtyMapService();
     }
 
 
