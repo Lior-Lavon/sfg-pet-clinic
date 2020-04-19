@@ -1,12 +1,9 @@
 package guru.springframework.petdataweb.bootstrap;
 
-import guru.springframework.petclinicdata.modules.*;
-import guru.springframework.petclinicdata.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import guru.springframework.sfgpetclinic.modules.PetType;
+import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 // Mark as component -> this class becomes a Bean and get registered to the Spring context
 // then becuse of the implementation, String is going to sun this Bean
@@ -38,11 +35,11 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-/*
+
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
-
+/*
         PetType cat = new PetType();
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
