@@ -2,6 +2,7 @@ package guru.springframework.petdataweb.bootstrap;
 
 import guru.springframework.petclinicdata.modules.*;
 import guru.springframework.petclinicdata.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,28 +13,28 @@ import java.time.LocalDate;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-//    private final OwnerService ownerService;
-//    private final VetService vetService;
-//    private final PetTypeService petTypeService;
-//    private final SpecialtyService specialtyService;
-//    private final VisitService visitService;
-//    private final PetService petService;
-//
-//    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService, PetService petService) {
-//        this.ownerService = ownerService;
-//        this.vetService = vetService;
-//        this.petTypeService = petTypeService;
-//        this.specialtyService = specialtyService;
-//        this.visitService = visitService;
-//        this.petService = petService;
-//    }
+    private final OwnerService ownerService;
+    private final VetService vetService;
+    private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
+    private final VisitService visitService;
+    private final PetService petService;
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService, PetService petService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
+        this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
+        this.visitService = visitService;
+        this.petService = petService;
+    }
 
     @Override
     public void run(String... args) throws Exception {
 
-//        int count = petTypeService.findAll().size();
-//        if(count==0)
-//            loadData();
+        int count = petTypeService.findAll().size();
+        if(count==0)
+            loadData();
     }
 
     private void loadData() {
@@ -122,7 +123,6 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets...");
-
  */
     }
 }
