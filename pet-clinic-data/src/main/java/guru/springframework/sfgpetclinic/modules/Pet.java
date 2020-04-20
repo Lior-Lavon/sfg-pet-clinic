@@ -1,10 +1,19 @@
 package guru.springframework.sfgpetclinic.modules;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity{
@@ -26,55 +35,9 @@ public class Pet extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
-    public Pet() {
-    }
-
-    public Pet(PetType petType, String name, Owner owner, LocalDate birthDate) {
-        this.petType = petType;
-        this.name = name;
-        this.owner = owner;
-        this.birthDate = birthDate;
-    }
-
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public void addVisit(Visit visit){
         visit.setPet(this);
         this.visits.add(visit);
-    }
-
-    public Set<Visit> getVisits() {
-        return visits;
     }
 
     public void setVisits(Set<Visit> visits) {

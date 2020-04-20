@@ -1,5 +1,7 @@
 package guru.springframework.sfgpetclinic.modules;
 
+import lombok.*;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -7,20 +9,17 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment filed
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {
