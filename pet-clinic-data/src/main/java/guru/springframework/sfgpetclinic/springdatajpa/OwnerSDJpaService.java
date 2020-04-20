@@ -1,4 +1,4 @@
-package guru.springframework.sfgpetclinic.services.springdatajpa;
+package guru.springframework.sfgpetclinic.springdatajpa;
 
 import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
 import guru.springframework.sfgpetclinic.modules.Owner;
@@ -48,10 +48,6 @@ public class OwnerSDJpaService implements OwnerService {
 
     @Override
     public Owner save(Owner object) {
-        System.out.println("#########");
-        System.out.println("#########");
-        System.out.println("#########");
-
         return ownerRepository.save(object);
     }
 

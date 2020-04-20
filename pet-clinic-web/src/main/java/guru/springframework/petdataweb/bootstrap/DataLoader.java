@@ -68,6 +68,7 @@ public class DataLoader implements CommandLineRunner {
         owner1.setAddress("Jan Lienrstraat");
         owner1.setCity("Amsterdam");
         owner1.setTelephone("+31610776368");
+        ownerService.save(owner1);
 
         Pet mikesPet = new Pet();
         mikesPet.setPetType(savedDogPetType);
@@ -78,14 +79,13 @@ public class DataLoader implements CommandLineRunner {
 
         owner1.getPets().add(mikesPet);
 
-        ownerService.save(owner1);
-
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
         owner2.setAddress("Jan Lienrstraat");
         owner2.setCity("Amsterdam");
         owner2.setTelephone("+31610776368");
+        ownerService.save(owner2);
 
         Pet fionasPet = new Pet();
         fionasPet.setPetType(savedCatPetType);
@@ -95,8 +95,6 @@ public class DataLoader implements CommandLineRunner {
         petService.save(fionasPet);
 
         owner2.getPets().add(fionasPet);
-
-        ownerService.save(owner2);
 
         System.out.println("Loaded Owners...");
 
