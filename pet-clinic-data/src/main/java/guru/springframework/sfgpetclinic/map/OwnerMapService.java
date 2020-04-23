@@ -70,4 +70,5 @@ public class OwnerMapService extends AbstractMapServiceA<Owner, Long> implements
                 .findFirst()
                 .orElse(null);
     }
+    
 }
