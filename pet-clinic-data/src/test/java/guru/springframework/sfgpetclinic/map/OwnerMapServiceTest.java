@@ -8,6 +8,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Test with junit-5.0
 class OwnerMapServiceTest {
 
     OwnerMapService ownerMapService;
@@ -20,13 +21,11 @@ class OwnerMapServiceTest {
     /// this will run before each test
     @BeforeEach
     void setUp() {
+
         ownerMapService = new OwnerMapService(new PetTypeMapService(), new PetMapService());
 
         // set init data
-        Owner o1 = new Owner();
-        o1.setId(ownerId1);
-        o1.setLastName(lastName);
-        ownerMapService.save(o1);
+        ownerMapService.save(Owner.builder().id(ownerId1).lastName(lastName).build());
     }
 
     @Test
@@ -45,18 +44,13 @@ class OwnerMapServiceTest {
     @Test
     void saveExistingId() {
 
-        Owner o2 = new Owner();
-        o2.setId(ownerId2);
-
-        Owner savedOwner = ownerMapService.save(o2);
+        Owner savedOwner = ownerMapService.save(Owner.builder().id(ownerId2).build());
         assertEquals(ownerId2, savedOwner.getId());
     }
 
     @Test
     void saveNoId(){
-        Owner o3 = new Owner();
-
-        Owner savedOwner = ownerMapService.save(o3);
+        Owner savedOwner = ownerMapService.save(Owner.builder().build());
 
         assertNotNull(savedOwner);
         assertNotNull(savedOwner.getId());

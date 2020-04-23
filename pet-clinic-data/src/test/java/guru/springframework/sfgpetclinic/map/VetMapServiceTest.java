@@ -24,11 +24,7 @@ class VetMapServiceTest {
         vetService = new VetMapService(specialtyService);
 
         // save demo data
-        Vet vet = new Vet();
-        vet.setId(vetId1);
-        vet.setFirstName("lior");
-        vet.setLastName("lavon");
-        vetService.save(vet);
+        vetService.save(Vet.builder().id(vetId1).firstName("lior").lastName("lavon").build());
 
     }
 
@@ -49,12 +45,10 @@ class VetMapServiceTest {
     @Test
     void save() {
 
-        Vet vet = new Vet();
-        vet.setId(vetId2);
-        Vet savedVet = vetService.save(vet);
+        Vet savedVet = vetService.save(Vet.builder().id(vetId2).build());
 
         assertNotNull(savedVet);
-        assertEquals(vetId2, vet.getId());
+        assertEquals(vetId2, savedVet.getId());
     }
 
     @Test
@@ -65,5 +59,8 @@ class VetMapServiceTest {
 
     @Test
     void deleteById() {
+        vetService.deleteById(vetId1);
+        assertEquals(0, vetService.findAll().size());
+
     }
 }
