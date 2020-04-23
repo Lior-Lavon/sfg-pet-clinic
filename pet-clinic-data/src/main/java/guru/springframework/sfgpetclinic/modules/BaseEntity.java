@@ -13,7 +13,6 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 

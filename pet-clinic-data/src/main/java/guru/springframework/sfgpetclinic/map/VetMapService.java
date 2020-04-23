@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.map;
 
 import guru.springframework.sfgpetclinic.modules.Vet;
+import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,13 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class VetMapService extends AbstractMapServiceA<Vet, Long> implements VetService {
+public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
+
+    SpecialtyService specialtyService;
+
+    public VetMapService(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
+    }
 
     @Override
     public Set<Vet> findAll() {
@@ -24,10 +31,11 @@ public class VetMapService extends AbstractMapServiceA<Vet, Long> implements Vet
     @Override
     public Vet save(Vet vet) {
 
-        if(vet != null && vet.getSpecialties() != null && vet.getSpecialties().size()>0){
-            vet.getSpecialties().forEach(specialty ->{
-                if(specialty.getId() == null)
-                    throw new RuntimeException("Vet->Specialty id not set");
+        if(vet != null && vet.getSpecialties() != null){
+            vet.getSpecialties().forEach(specialty -> {
+                if(specialty.getId() == null){
+                    specialtyService.save(specialty);
+                }
             });
         }
 

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
-public class PersonMapService extends AbstractMapServiceA<Person, Long> implements CrudService<Person, Long> {
+public class PersonMapService extends AbstractMapService<Person, Long> implements CrudService<Person, Long> {
 
     @Override
     public Set<Person> findAll() {
