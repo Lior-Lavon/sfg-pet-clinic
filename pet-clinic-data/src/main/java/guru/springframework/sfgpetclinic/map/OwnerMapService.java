@@ -2,6 +2,8 @@ package guru.springframework.sfgpetclinic.map;
 
 import guru.springframework.sfgpetclinic.modules.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.services.PetService;
+import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,14 @@ import java.util.Set;
 @Service
 @Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapServiceA<Owner, Long> implements OwnerService {
+
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+    }
 
     @Override
     public Set<Owner> findAll() {
@@ -24,14 +34,19 @@ public class OwnerMapService extends AbstractMapServiceA<Owner, Long> implements
     @Override
     public Owner save(Owner owner) {
 
-        if(owner != null && owner.getPets() != null && owner.getPets().size()>0){
+        if(owner != null && owner.getPets() != null){
             owner.getPets().forEach(pet -> {
-                if(pet.getId() == null)
-                    throw new RuntimeException("pet id not exist");
-                if(pet.getPetType().getId() == null)
-                    throw new RuntimeException("petType id not exist");
+
+                if(pet.getPetType() != null && pet.getPetType().getId() == null){
+                    petTypeService.save(pet.getPetType());
+                }
+
+                if(pet.getId() == null){
+                    petService.save(pet);
+                }
             });
         }
+
         return super.save(owner);
     }
 
@@ -47,6 +62,12 @@ public class OwnerMapService extends AbstractMapServiceA<Owner, Long> implements
 
     @Override
     public Owner findByLastName(String lastName) {
-        return null;
+
+        // using java-8.0 Streams
+        return this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
 }
