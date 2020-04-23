@@ -33,7 +33,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
     void deleteById(ID id){
         map.remove(id);
     }
-    
+
 
     void delete(T object){
         Iterator<Map.Entry<Long, T>> iterator = map.entrySet().iterator();
