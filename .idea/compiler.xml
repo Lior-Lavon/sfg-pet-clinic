@@ -12,14 +12,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pet-clinic" target="11" />
+      <module name="pet-clinic" target="1.8" />
       <module name="pet-clinic-data" target="1.8" />
       <module name="pet-clinic-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="pet-clinic" options="-parameters" />
+      <module name="pet-clinic" options="" />
       <module name="pet-clinic-data" options="-parameters" />
       <module name="pet-clinic-web" options="-parameters" />
     </option>
