@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // Test with junit-5.0
 class OwnerMapServiceTest {
-/*
+
     OwnerMapService ownerMapService;
 
     final Long ownerId1 = 1L;
@@ -83,7 +83,4 @@ class OwnerMapServiceTest {
 
         assertNull(owner);
     }
-
-
- */
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VetMapServiceTest {
-/*
+
     VetService vetService;
     SpecialtyService specialtyService;
 
@@ -63,6 +63,4 @@ class VetMapServiceTest {
         assertEquals(0, vetService.findAll().size());
 
     }
-
- */
 }
