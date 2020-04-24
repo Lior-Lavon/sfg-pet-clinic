@@ -12,9 +12,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pet-clinic" target="11" />
-      <module name="pet-clinic-data" target="11" />
-      <module name="pet-clinic-web" target="11" />
+      <module name="pet-clinic" target="8" />
+      <module name="pet-clinic-data" target="8" />
+      <module name="pet-clinic-web" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
