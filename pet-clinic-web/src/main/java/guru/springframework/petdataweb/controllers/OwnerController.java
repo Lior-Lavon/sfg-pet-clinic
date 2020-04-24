@@ -1,6 +1,6 @@
 package guru.springframework.petdataweb.controllers;
 
-import guru.springframework.sfgpetclinic.modules.Owner;
+import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
