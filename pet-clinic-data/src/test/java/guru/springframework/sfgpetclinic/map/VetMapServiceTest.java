@@ -1,9 +1,9 @@
 package guru.springframework.sfgpetclinic.map;
 
-import guru.springframework.sfgpetclinic.modules.Specialty;
-import guru.springframework.sfgpetclinic.modules.Vet;
+import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.services.map.VetMapService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VetMapServiceTest {
-/*
+
     VetService vetService;
     SpecialtyService specialtyService;
 
@@ -63,6 +63,4 @@ class VetMapServiceTest {
         assertEquals(0, vetService.findAll().size());
 
     }
-
- */
 }

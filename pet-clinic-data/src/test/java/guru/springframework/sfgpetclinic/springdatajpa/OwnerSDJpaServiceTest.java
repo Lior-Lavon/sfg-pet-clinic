@@ -1,10 +1,9 @@
 package guru.springframework.sfgpetclinic.springdatajpa;
 
-import guru.springframework.sfgpetclinic.modules.Owner;
 import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
 import guru.springframework.sfgpetclinic.repositories.PetRepository;
 import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
-import guru.springframework.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.services.springdatajpa.OwnerSDJpaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,10 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import guru.springframework.sfgpetclinic.model.Owner;
+
 // mockito test example
 @ExtendWith(MockitoExtension.class) // this setup the junit-5.0 Mockito in the environment
 class OwnerSDJpaServiceTest {
-/*
+
     @Mock
     OwnerRepository ownerRepository;
 
@@ -34,7 +35,7 @@ class OwnerSDJpaServiceTest {
     PetTypeRepository petTypeRepository;
 
     @InjectMocks        // init the service with all repositories
-    OwnerSDJpaService ownerSDJpaService;
+            OwnerSDJpaService ownerSDJpaService;
 
     final String FIRST_NAME = "lior";
     final Long ownerId1 = 1L;
@@ -117,6 +118,4 @@ class OwnerSDJpaServiceTest {
 
         verify(ownerRepository, times(1)).deleteById(any());
     }
-
- */
 }

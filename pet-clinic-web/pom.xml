@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>sfg-pet-clinic</artifactId>
         <groupId>guru.springframework</groupId>
@@ -10,8 +11,7 @@
     </parent>
 
     <artifactId>pet-clinic-web</artifactId>
-
-    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
     <properties>
         <!-- Web dependencies -->
@@ -26,6 +26,7 @@
             <artifactId>pet-clinic-data</artifactId>
             <groupId>guru.springframework</groupId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
