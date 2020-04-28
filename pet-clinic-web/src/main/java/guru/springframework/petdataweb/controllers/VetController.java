@@ -11,7 +11,7 @@ import java.util.*;
 //@RequestMapping("/vets")
 @Controller
 public class VetController {
-
+/*
     private static VetService vetService;
 
     public VetController(VetService vetService) {
@@ -36,4 +36,6 @@ public class VetController {
         model.addAttribute("vets", list);
         return "vets/index";
     }
+
+ */
 }

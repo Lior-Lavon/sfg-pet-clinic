@@ -11,7 +11,7 @@ import java.util.*;
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
-
+/*
     private final OwnerService ownerService;
 
     public OwnerController(OwnerService ownerService) {
@@ -40,4 +40,5 @@ public class OwnerController {
 
         return "notimplemented";
     }
+ */
 }
