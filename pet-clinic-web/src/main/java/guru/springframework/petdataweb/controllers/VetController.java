@@ -1,10 +1,16 @@
 package guru.springframework.petdataweb.controllers;
 
+import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.*;
 
 @Controller
 public class VetController {
-/*
+
     private static VetService vetService;
 
     public VetController(VetService vetService) {
@@ -29,6 +35,4 @@ public class VetController {
         model.addAttribute("vets", list);
         return "vets/index";
     }
-
- */
 }
