@@ -1,7 +1,9 @@
 package guru.springframework.sfgpetclinic.services;
 
-import guru.springframework.sfgpetclinic.modules.Visit;
+import guru.springframework.sfgpetclinic.model.Visit;
 
-
-public interface VisitService extends CrudService<Visit, Long>{
+/**
+ * Created by jt on 8/7/18.
+ */
+public interface VisitService extends CrudService<Visit, Long> {
 }

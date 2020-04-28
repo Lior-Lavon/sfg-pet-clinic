@@ -1,6 +1,6 @@
 package guru.springframework.petdataweb.bootstrap;
 
-import guru.springframework.sfgpetclinic.modules.*;
+import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -37,7 +37,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-
+/*
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -120,5 +120,7 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets...");
+
+ */
     }
 }
