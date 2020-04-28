@@ -15,9 +15,9 @@
 
 
 <!--    add this property to skip repackage process and create a jar file-->
-    <properties>
-        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
-    </properties>
+<!--    <properties>-->
+<!--        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>-->
+<!--    </properties>-->
 
     <dependencies>
         <dependency>
