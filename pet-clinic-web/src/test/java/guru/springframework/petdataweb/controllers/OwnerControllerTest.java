@@ -13,7 +13,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
@@ -50,24 +52,55 @@ class OwnerControllerTest {
         // build Mock Mvc from indexController
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/index"))
-                .andExpect(model().attribute("owners", hasSize(2)));
+                .andExpect(model().attributeExists("owners"));
     }
 
     @Test
     void findOwners() throws Exception {
 
-//        // build Mock Mvc from indexController
-//        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get("/owners/find"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("notimplementedyet"));
-//
-//
-//        verifyZeroInteractions(ownerService);
+        // build Mock Mvc from indexController
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/find"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/findOwners"))
+                .andExpect(model().attributeExists("owners"));
+
+        verifyZeroInteractions(ownerService);
+    }
+
+    @Test
+    void processFindFormReturnMany() throws Exception {
+
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+                Arrays.asList(Owner.builder().id(1L).firstName("lior").lastName("lavon").build(),
+                        Owner.builder().id(2L).firstName("lior2").lastName("lavon2").build()));
+
+        // build Mock Mvc from indexController
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+                .andExpect(status().is3xxRedirection()) // expect 3xx status of redirection
+                .andExpect(view().name("redirect:/owners/ownersList")) // redirection string
+                .andExpect(model().attribute("selections", hasSize(2)));
+    }
+
+    @Test
+    void processFindFormReturnOne() throws Exception {
+
+        when(ownerService.findAllByLastNameLike(anyString()))
+                .thenReturn(Arrays.asList(Owner.builder().id(1L).firstName("lior").lastName("lavon").build()));
+
+        // build Mock Mvc from indexController
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+                .andExpect(status().is3xxRedirection()) // expect 3xx status of redirection
+                .andExpect(view().name("redirect:/owners/1")) // redirection string
+                .andExpect(model().attributeExists("selections"));
     }
 
     @Test
