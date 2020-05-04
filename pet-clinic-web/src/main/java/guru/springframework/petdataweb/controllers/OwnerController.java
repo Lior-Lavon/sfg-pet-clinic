@@ -4,7 +4,10 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -21,8 +24,7 @@ public class OwnerController {
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String listOwners(Model model){
 
-        Set<Owner> owners = ownerService.findAll();
-        List<Owner> list = new ArrayList(owners);
+        List<Owner> list = new ArrayList(ownerService.findAll());
         Collections.sort(list, new Comparator<Owner>() {
             @Override
             public int compare(Owner o1, Owner o2) {
@@ -39,6 +41,17 @@ public class OwnerController {
     public String findOwners(Model model){
 
         return "notimplemented";
+    }
+
+    @GetMapping("/{ownerId}")
+    public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId){
+
+        Owner owner = ownerService.findById(ownerId);
+
+        ModelAndView mav = new ModelAndView("owners/ownerDetails");
+        mav.addObject("owner", owner);
+
+        return mav;
     }
 
 }
