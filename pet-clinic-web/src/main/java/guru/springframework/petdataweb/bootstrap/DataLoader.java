@@ -57,59 +57,34 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Loaded Specialty...");
 
-        Owner owner1 = new Owner();
-        owner1.setFirstName("Michael");
-        owner1.setLastName("Weston");
-        owner1.setAddress("Jan Lienrstraat");
-        owner1.setCity("Amsterdam");
-        owner1.setTelephone("+31610776368");
+        Owner owner1 = Owner.builder().firstName("Michael").lastName("Weston").address("Jan Lienrstraat").city("Amsterdam").telephone("+31610776368").build();
         ownerService.save(owner1);
 
-        Pet mikesPet = new Pet();
-        mikesPet.setPetType(savedDogPetType);
-        mikesPet.setBirthDate(LocalDate.now());
-        mikesPet.setName("Rosco");
-        mikesPet.setOwner(owner1);
+        Pet mikesPet = Pet.builder().petType(savedDogPetType).birthDate(LocalDate.now()).name("Rosco").owner(owner1).build();
         petService.save(mikesPet);
 
         owner1.getPets().add(mikesPet);
 
-        Owner owner2 = new Owner();
-        owner2.setFirstName("Fiona");
-        owner2.setLastName("Glenanne");
-        owner2.setAddress("Jan Lienrstraat");
-        owner2.setCity("Amsterdam");
-        owner2.setTelephone("+31610776368");
+        Owner owner2 = Owner.builder().firstName("Fiona").lastName("Glenanne").address("Jan Lienrstraat").city("Amsterdam").telephone("+31610776368").build();
         ownerService.save(owner2);
 
-        Pet fionasPet = new Pet();
-        fionasPet.setPetType(savedCatPetType);
-        fionasPet.setBirthDate(LocalDate.now());
-        fionasPet.setName("Just-Cat");
-        fionasPet.setOwner(owner2);
+        Pet fionasPet = Pet.builder().petType(savedCatPetType).birthDate(LocalDate.now()).name("Just-Cat").owner(owner2).build();
         petService.save(fionasPet);
 
         owner2.getPets().add(fionasPet);
 
         System.out.println("Loaded Owners...");
 
-        Visit catVisit = new Visit();
-        catVisit.setPet(fionasPet);
-        catVisit.setDate(LocalDate.now());
-        catVisit.setDescription("Sneezy Kitty");
+        Visit catVisit = Visit.builder().pet(fionasPet).date(LocalDate.now()).description("Sneezy Kitty").build();
 
         visitService.save(catVisit);
 
-        Vet vet1 = new Vet();
-        vet1.setFirstName("Sam");
-        vet1.setLastName("Axe");
+        Vet vet1 = Vet.builder().firstName("Sam").lastName("Axe").build();
         vet1.getSpecialities().add(savedRadiology);
 
         vetService.save(vet1);
 
-        Vet vet2 = new Vet();
-        vet2.setFirstName("Jessie");
-        vet2.setLastName("Porter");
+        Vet vet2 = Vet.builder().firstName("Jessie").lastName("Porter").build();
         vet2.getSpecialities().add(savedSurgery);
 
         vetService.save(vet2);
