@@ -50,11 +50,12 @@ public class OwnerController {
     @RequestMapping({"/find"})
     public String findOwners(Model model){
 
-        model.addAttribute("owners", Owner.builder());
+        Owner owner = Owner.builder().build();
+        model.addAttribute("owner", owner);
         return "owners/findOwners";
     }
 
-    // search for the search for the owners
+    // perform a search for the owners
     @GetMapping({"", "/"})
     public String processOwnerFindForm(Owner owner, Model model){
 
@@ -67,9 +68,7 @@ public class OwnerController {
             return "/owners/findOwners";
         } else if(ownerList.size()==1){
             model.addAttribute("selections", ownerList.get(0));
-
-            String ret = "redirect:/owners/" + ownerList.get(0).getId();
-            return ret;
+            return "redirect:/owners/" + ownerList.get(0).getId();
         } else {
             model.addAttribute("selections", ownerList);
             return "redirect:/owners/ownersList";
