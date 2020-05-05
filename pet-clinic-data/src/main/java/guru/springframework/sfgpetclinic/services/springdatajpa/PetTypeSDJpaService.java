@@ -6,6 +6,8 @@ import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,4 +50,5 @@ public class PetTypeSDJpaService implements PetTypeService {
     public void deleteById(Long aLong) {
         petTypeRepository.deleteById(aLong);
     }
+
 }
