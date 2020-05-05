@@ -163,6 +163,5 @@ class OwnerControllerTest {
                 .andExpect(model().attributeExists("owner"));
 
         verify(ownerService, times(1)).save(any());
-
     }
 }
