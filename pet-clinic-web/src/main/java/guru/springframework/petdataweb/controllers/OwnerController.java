@@ -6,17 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
+
+    public static final String OWNERS_CREATE_OR_UPDATE_OWNER_FORM = "/owners/createOrUpdateOwnerForm";
+    public static final String VIEWS_OWNER_CREATE_OR_UPDATED_FORM = "View owner create or updated form";
 
     private final OwnerService ownerService;
 
@@ -71,9 +72,11 @@ public class OwnerController {
             return "/owners/findOwners";
         } else if(ownerList.size()==1){
             // one owner found
+            model.addAttribute("selections", ownerList.get(0));
             return "redirect:/owners/" + ownerList.get(0).getId();
         } else {
             // more then 1 found
+            model.addAttribute("selections", ownerList);
             return "redirect:/owners/ownersList";
         }
     }
@@ -82,7 +85,7 @@ public class OwnerController {
 
     //  version 1
     @GetMapping("/{ownerId}")
-    public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId){
+    public ModelAndView showOwner(@PathVariable Long ownerId){
 
         Owner owner = ownerService.findById(ownerId);
 
@@ -101,5 +104,46 @@ public class OwnerController {
 //
 //        return "/owners/ownerDetails";
 //    }
+
+    @GetMapping("/new")
+    public String showNewOwnerForm(Model model){
+        // send new owner
+        model.addAttribute("owner", Owner.builder().build());
+        return OWNERS_CREATE_OR_UPDATE_OWNER_FORM;
+    }
+
+    @PostMapping("/new")
+    public String saveOrUpdate(@Valid Owner newOwner, BindingResult result){
+
+        if(result.hasErrors()){
+            return VIEWS_OWNER_CREATE_OR_UPDATED_FORM;
+        } else {
+            Owner savedOwner = ownerService.save(newOwner);
+            return "redirect:/owners/" + savedOwner.getId() ;
+        }
+    }
+
+    @GetMapping("/{ownerId}/edit")
+    public String initUpdateOwnerForm(@PathVariable Long ownerId, Model model){
+
+        // send existing owner
+        model.addAttribute("owner", ownerService.findById(Long.valueOf(ownerId)));
+        return OWNERS_CREATE_OR_UPDATE_OWNER_FORM;
+    }
+
+    @PostMapping("/{ownerId}/edit")
+    public String processUpdateOwnerForm(@Valid Owner owner, @PathVariable Long ownerId, BindingResult result){
+
+        if(result.hasErrors()){
+            return VIEWS_OWNER_CREATE_OR_UPDATED_FORM;
+        } else {
+            // becouse dataBinder.setDisallowedFields("id"); we need to set the Id to the Owner
+            owner.setId(ownerId);
+            Owner updatedOwner = ownerService.save(owner);
+            return "redirect:/owners/" + updatedOwner.getId() ;
+        }
+    }
+
+
 
 }
