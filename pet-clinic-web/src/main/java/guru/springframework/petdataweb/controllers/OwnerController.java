@@ -4,6 +4,7 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -30,7 +31,7 @@ public class OwnerController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @GetMapping("/list")
+    @GetMapping("/ownersList")
     public String listOwners(Model model){
 
         List<Owner> list = new ArrayList(ownerService.findAll());
@@ -42,13 +43,13 @@ public class OwnerController {
             }
         });
 
-        model.addAttribute("owners", list);
-        return "owners/index";
+        model.addAttribute("selections", list);
+        return "owners/ownersList";
     }
 
-    // return the find owner view
+    // return the find owner Form
     @RequestMapping({"/find"})
-    public String findOwners(Model model){
+    public String findOwnersForm(Model model){
 
         Owner owner = Owner.builder().build();
         model.addAttribute("owner", owner);
@@ -57,25 +58,29 @@ public class OwnerController {
 
     // perform a search for the owners
     @GetMapping({"", "/"})
-    public String processOwnerFindForm(Owner owner, Model model){
+    public String processOwnerFindForm(Owner owner, BindingResult result, Model model){
 
         if(owner.getLastName() == null)
             owner.setLastName("");
 
-        List<Owner> ownerList = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> ownerList = ownerService.findAllByLastNameLike('%' + owner.getLastName() + '%');
         if(ownerList.isEmpty()){
+            // no owners found
+            result.rejectValue("lastName", "NotFound", "not found");
             model.addAttribute("owners", Owner.builder());
             return "/owners/findOwners";
         } else if(ownerList.size()==1){
-            model.addAttribute("selections", ownerList.get(0));
+            // one owner found
             return "redirect:/owners/" + ownerList.get(0).getId();
         } else {
-            model.addAttribute("selections", ownerList);
+            // more then 1 found
             return "redirect:/owners/ownersList";
         }
     }
 
     // show one single owner by id
+
+    //  version 1
     @GetMapping("/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId){
 
@@ -86,5 +91,15 @@ public class OwnerController {
 
         return mav;
     }
+
+//    version 2
+//    @GetMapping("/{ownerId}")
+//    public String showOwner(Model model, @PathVariable("ownerId") Long ownerId){
+//
+//        Owner owner = ownerService.findById(ownerId);
+//        model.addAttribute("owner", owner);
+//
+//        return "/owners/ownerDetails";
+//    }
 
 }
