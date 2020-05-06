@@ -45,6 +45,7 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
+
     /**
      * Return the Pet with the given name, or null if none found for this Owner.
      *
@@ -54,12 +55,6 @@ public class Owner extends Person {
     public Pet getPet(String name) {
         return getPet(name, false);
     }
-
-    public void setPet(Pet pet) {
-        pet.setOwner(this);
-        this.pets.add(pet);
-    }
-
 
     /**
      * Return the Pet with the given name, or null if none found for this Owner.
@@ -80,6 +75,5 @@ public class Owner extends Person {
         }
         return null;
     }
-
 
 }
