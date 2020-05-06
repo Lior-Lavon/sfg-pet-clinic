@@ -56,6 +56,12 @@ public class Owner extends Person {
         return getPet(name, false);
     }
 
+    public void setPet(Pet pet) {
+        pet.setOwner(this);
+        this.pets = pets;
+    }
+
+
     /**
      * Return the Pet with the given name, or null if none found for this Owner.
      *
