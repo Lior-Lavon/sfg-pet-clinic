@@ -46,16 +46,6 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
 
-    /**
-     * Return the Pet with the given name, or null if none found for this Owner.
-     *
-     * @param name to test
-     * @return true if pet name is already in use
-     */
-    public Pet getPet(String name) {
-        return getPet(name, false);
-    }
-
     public void setPet(Pet pet) {
         pet.setOwner(this);
         this.pets = pets;
