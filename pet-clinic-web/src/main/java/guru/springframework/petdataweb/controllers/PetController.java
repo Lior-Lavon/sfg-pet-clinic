@@ -47,5 +47,59 @@ public class PetController {
         return ownerService.findById(ownerId);
     }
 
+    @GetMapping("/pets/{petId}/edit")
+    public String initEditPetForm(@PathVariable Long ownerId, Model model){
+        // find owner
+        Owner existOwner = ownerService.findById(ownerId);
 
+        // find the existing pet
+        Optional<Pet> optionalExistingPet = existOwner.getPets().stream()
+                .filter(pet1 -> pet1.getId().equals(petId))
+                .findFirst();
+
+        if(!optionalExistingPet.isPresent()){
+            // todo
+            throw new RuntimeException("pet not found id:" + petId);
+        }
+
+        Pet pet = optionalExistingPet.get();
+        model.addAttribute("pet", pet);
+        model.addAttribute("types", populatePetType());
+
+        return PETS_CREATE_OR_UPDATE_PETS_FORM;
+    }
+
+    @PostMapping("/pets/{petId}/edit")
+    public String processEditPetForm(@PathVariable Long ownerId, @PathVariable Long petId, @Valid Pet pet, BindingResult result, Model model){
+
+        if(result.hasErrors()){
+            model.addAttribute("pet", pet);
+            return PETS_CREATE_OR_UPDATE_PETS_FORM;
+        }
+
+        // find owner
+        Owner existOwner = ownerService.findById(ownerId);
+
+        // find the existing pet
+        Optional<Pet> optionalExistingPet = existOwner.getPets().stream()
+                .filter(pet1 -> pet1.getId().equals(petId))
+                .findFirst();
+
+        if(!optionalExistingPet.isPresent()){
+            // todo
+            throw new RuntimeException("pet not found id:" + petId);
+        }
+
+        Pet existingPet = optionalExistingPet.get();
+        existingPet.setPetType(pet.getPetType());
+        existingPet.setBirthDate(pet.getBirthDate());
+        existingPet.setName(pet.getName());
+        existingPet.setVisits(pet.getVisits());
+
+        ownerService.save(existOwner);
+
+        model.addAttribute("pet", existingPet);
+
+        return "redirect:/owners/" + ownerId;
+    }
 }
