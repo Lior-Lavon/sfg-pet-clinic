@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: guru.springframework.petdataweb.controllers.PetControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in guru.springframework.petdataweb.controllers.PetControllerTest
-guru.springframework.petdataweb.controllers.PetControllerTest  Time elapsed: 0 s  <<< ERROR!
-java.lang.NoClassDefFoundError: Lguru/springframework/sfgpetclinic/services/OwnerService;
-Caused by: java.lang.ClassNotFoundException: guru.springframework.sfgpetclinic.services.OwnerService
-
