@@ -60,9 +60,9 @@ public class VisitController {
     @PostMapping("/pets/{petId}/visits/new")
     public String processVisitForm(@PathVariable Long ownerId, Visit visit, BindingResult result){
 
-//        if(result.hasErrors()){
-//            return PETS_CREATE_OR_UPDATE_VISIT_FORM;
-//        }
+        if(result.hasErrors()){
+            return PETS_CREATE_OR_UPDATE_VISIT_FORM;
+        }
 
         visitService.save(visit);
         return "redirect:/owners/" + ownerId;
