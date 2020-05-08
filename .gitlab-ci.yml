@@ -1,0 +1,29 @@
+image: maven:3-jdk-11
+
+stages:
+  - build
+#  - run
+
+before_script:
+  - echo "Start CI/CD"
+
+maven-build:
+  image: maven:3-jdk-11
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - target/*.jar
+  only:
+    - master
+
+#run:
+#  image: maven:3-jdk-11
+#  stage: run
+#  script: "mvn spring-boot:run"
+#  only:
+#    - master
+
+
+after_script:
+  - echo "End CI/CD"

@@ -1,6 +1,8 @@
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/PetClinicApplication.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/controllers/VetController.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/controllers/PetController.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/controllers/VisitController.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/bootstrap/DataLoader.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/controllers/IndexController.java
-/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/config/PetClinicConfiguration.java
 /Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/controllers/OwnerController.java
+/Users/liorlavon/Documents/Java/sfg-pet-clinic/pet-clinic-web/src/main/java/guru/springframework/petdataweb/formatters/PetTypeFormatter.java

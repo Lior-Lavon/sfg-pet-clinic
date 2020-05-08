@@ -1,14 +1,13 @@
 package guru.springframework.petdataweb.controllers;
 
-import guru.springframework.petclinicdata.modules.Vet;
-import guru.springframework.petclinicdata.services.VetService;
+import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
-//@RequestMapping("/vets")
 @Controller
 public class VetController {
 
