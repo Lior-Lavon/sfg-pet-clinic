@@ -110,6 +110,7 @@ class PetControllerTest {
         Pet pet = Pet.builder().id(2L).name("petname").build();
         owner.setPet(pet);
 
+
         when(ownerService.findById(anyLong())).thenReturn(owner);
         when(petService.save(any())).thenReturn(pet);
 
@@ -121,6 +122,5 @@ class PetControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1")); // redirection string
     }
-
 
 }
