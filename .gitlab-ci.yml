@@ -18,7 +18,7 @@ maven-build:
     - master
 
 #run:
-#  image: maven:3-jdk-8
+#  image: maven:3-jdk-11
 #  stage: run
 #  script: "mvn spring-boot:run"
 #  only:
