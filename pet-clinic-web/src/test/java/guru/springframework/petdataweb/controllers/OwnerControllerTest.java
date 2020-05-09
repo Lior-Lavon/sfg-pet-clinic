@@ -13,9 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.any;
@@ -70,7 +68,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void processFindFormReturnMany() throws Exception {
+    void testFindFormReturnMany() throws Exception {
 
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
                 Arrays.asList(Owner.builder().id(1L).firstName("lior").lastName("lavon").build(),
@@ -83,7 +81,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void processFindFormReturnOne() throws Exception {
+    void testFindFormReturnOne() throws Exception {
 
         when(ownerService.findAllByLastNameLike(anyString()))
                 .thenReturn(Arrays.asList(Owner.builder().id(1L).firstName("lior").lastName("lavon").build()));
@@ -93,6 +91,32 @@ class OwnerControllerTest {
                 .andExpect(view().name("redirect:/owners/1")) // redirection string
                 .andExpect(model().attributeExists("selections"));
     }
+
+    @Test
+    void testFindFormWithEmptyValReturnAll() throws Exception {
+
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+                Arrays.asList(Owner.builder().id(1L).firstName("lior").lastName("lavon").build(),
+                        Owner.builder().id(2L).firstName("lior2").lastName("lavon2").build()));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners").param("lastName", ""))
+                .andExpect(status().is3xxRedirection()) // expect 3xx status of redirection
+                .andExpect(view().name("redirect:/owners/ownersList")) // redirection string
+                .andExpect(model().attribute("selections", hasSize(2)));
+    }
+
+    @Test
+    void testFindFormNotFound() throws Exception {
+
+        List<Owner> ownerList = new ArrayList<>();
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(ownerList);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+                .andExpect(status().isOk()) // expect 3xx status of redirection
+                .andExpect(view().name("/owners/findOwners"))
+                .andExpect(model().attributeExists("owners"));
+    }
+
 
     @Test
     void displayOwner() throws Exception {
