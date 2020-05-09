@@ -47,7 +47,7 @@ public class PetController {
         return petTypes;
     }
 
-    //    // fill up the owner attribute
+    // fill up the owner attribute
     @ModelAttribute("owner")
     public Owner findOwner(@PathVariable Long ownerId){
         return ownerService.findById(ownerId);
@@ -69,7 +69,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/new")
-    public String processCreationForm(@PathVariable Long ownerId, Pet pet, BindingResult result, Model model){
+    public String processCreationForm(@PathVariable Long ownerId, @Valid Pet pet, BindingResult result, Model model){
 
         if(result.hasErrors()){
             model.addAttribute("pet", pet);

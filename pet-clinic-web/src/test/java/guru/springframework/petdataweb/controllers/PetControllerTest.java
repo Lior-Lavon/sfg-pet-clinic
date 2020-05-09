@@ -82,6 +82,8 @@ class PetControllerTest {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)    // mimic a form post
                 .param("id", "")                        // mimic an empty string
                 .param("description", "some string")
+                .param("name", "name")
+                .param( "birthDate", "2000-01-01")
         )   // some description
                 .andExpect(status().is3xxRedirection()) // expect 3-2 status of redirection
                 .andExpect(view().name("redirect:/owners/1")); // redirection string
