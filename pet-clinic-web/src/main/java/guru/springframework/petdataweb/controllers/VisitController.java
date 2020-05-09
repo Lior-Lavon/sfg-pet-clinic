@@ -12,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RequestMapping("/owners/{ownerId}")
@@ -32,6 +35,15 @@ public class VisitController {
     @InitBinder
     public void initVisitBinder(WebDataBinder binder){
         binder.setDisallowedFields("id");
+
+        // Bind the text date string to a LocalDate
+        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport(){
+
+            @Override
+            public void setAsText(String text){
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 
     // Called before each and every @RequestMapping annotated method
@@ -58,7 +70,7 @@ public class VisitController {
 
     // Spring MVC called method loadPetWithVisit before processVisitForm is called
     @PostMapping("/pets/{petId}/visits/new")
-    public String processVisitForm(@PathVariable Long ownerId, Visit visit, BindingResult result){
+    public String processVisitForm(@PathVariable Long ownerId, @Valid Visit visit, BindingResult result){
 
         if(result.hasErrors()){
             return PETS_CREATE_OR_UPDATE_VISIT_FORM;
@@ -69,10 +81,10 @@ public class VisitController {
     }
 
     // Spring MVC called method loadPetWithVisit before initVisitForm is called
-    @GetMapping("/pets/{petId}/visits/edit")
-    public String initEditVisitForm(@PathVariable Long visitId, Model model){
-
-        return PETS_CREATE_OR_UPDATE_VISIT_FORM;
-    }
+//    @GetMapping("/pets/{petId}/visits/edit")
+//    public String initEditVisitForm(@PathVariable Long visitId, Model model){
+//
+//        return PETS_CREATE_OR_UPDATE_VISIT_FORM;
+//    }
 
 }
