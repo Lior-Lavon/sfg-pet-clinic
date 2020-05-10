@@ -6,6 +6,7 @@ import guru.springframework.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.VisitService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @RequestMapping("/owners/{ownerId}")
@@ -36,12 +38,13 @@ public class VisitController {
     public void initVisitBinder(WebDataBinder binder){
         binder.setDisallowedFields("id");
 
-        // Bind the text date string to a LocalDate
+        // Bind the text date string to a
         binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport(){
 
             @Override
             public void setAsText(String text){
-                setValue(LocalDate.parse(text));
+                LocalDate localDate = LocalDate.parse(text);
+                setValue(localDate);
             }
         });
     }

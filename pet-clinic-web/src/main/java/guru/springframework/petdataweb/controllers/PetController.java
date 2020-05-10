@@ -13,6 +13,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
@@ -36,6 +39,17 @@ public class PetController {
     @InitBinder
     public void initOwnerBinder(WebDataBinder binder){
         binder.setDisallowedFields("id");
+
+        // Bind the text date string to a
+        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport(){
+
+            @Override
+            public void setAsText(String text){
+                LocalDate localDate = LocalDate.parse(text);
+                setValue(localDate);
+            }
+        });
+
     }
 
     // helper methods that will be populate to the model
