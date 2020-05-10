@@ -83,7 +83,7 @@ class PetControllerTest {
                 .param("id", "")                        // mimic an empty string
                 .param("description", "some string")
                 .param("name", "name")
-                .param( "birthDate", "01-02-2020")
+                .param( "birthDate", "2020-01-02")
         )   // some description
                 .andExpect(status().is3xxRedirection()) // expect 3-2 status of redirection
                 .andExpect(view().name("redirect:/owners/1")); // redirection string
