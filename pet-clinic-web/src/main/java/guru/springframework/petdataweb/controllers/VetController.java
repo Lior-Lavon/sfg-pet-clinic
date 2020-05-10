@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
@@ -19,8 +21,8 @@ public class VetController {
         this.vetService = vetService;
     }
 
-    @GetMapping({"/vets", "/vets.html"})
-    public String showVets(Model model){
+    @GetMapping({"/vets.html"})
+    public String listVets(Model model){
 
         Set<Vet> vets = vetService.findAll();
 
@@ -35,5 +37,11 @@ public class VetController {
 
         model.addAttribute("vets", list);
         return "vets/index";
+    }
+
+    // simulate a rest API to return a JSON list of vets
+    @GetMapping("/api/vets")
+    public @ResponseBody Set<Vet> getVetsJSON(){
+        return vetService.findAll();
     }
 }
